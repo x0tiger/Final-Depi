@@ -1,0 +1,3 @@
+This project summarizes my manual testing work on the OpenCart demo website, where I designed structured test cases, executed them across core functionalities—including registration, search, product display, cart, wishlist, contact forms, currency change, and checkout—and documented all results thoroughly. During execution, I identified several issues such as validation problems and incorrect cart behavior, and captured them in a standardized bug report with clear reproduction steps, expected and actual results, severity, and priority. All test cases, results, and bug reports are organized and included within the project files in a clean, professional format.
+
+ by : Hassan Mohamed Kandil
