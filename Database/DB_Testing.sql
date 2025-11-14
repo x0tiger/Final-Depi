@@ -531,7 +531,7 @@ WHERE p.status = 1
 LIMIT 15;
 
 -- =======================================================
--- ✅ DATABASE HEALTH CHECK
+--  DATABASE HEALTH CHECK
 -- =======================================================
 
 -- 1. Table Row Counts
@@ -701,3 +701,4 @@ SELECT COUNT(*) as total_opencart_tables
 FROM INFORMATION_SCHEMA.TABLES 
 WHERE TABLE_SCHEMA = DATABASE() 
     AND TABLE_NAME LIKE 'oc_%';
+
