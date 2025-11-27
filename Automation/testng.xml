@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Automation Exercise Test Suite">
+    <test name="All Test Cases">
+        <classes>
+            <class name="org.example.TestCase01_RegisterUser"/>
+            <class name="org.example.TestCase02_LoginUserWithCorrectEmailAndPassword"/>
+            <class name="org.example.TestCase03_LoginUserWithIncorrectEmailAndPassword"/>
+            <class name="org.example.TestCase04_LogoutUser"/>
+            <class name="org.example.TestCase05_RegisterUserWithExistingEmail"/>
+            <class name="org.example.TestCase06_ContactUsForm"/>
+            <class name="org.example.TestCase07_VerifyTestCasesPage"/>
+            <class name="org.example.TestCase08_VerifyAllProductsAndProductDetailPage"/>
+            <class name="org.example.TestCase09_SearchProduct"/>
+            <class name="org.example.TestCase10_VerifySubscriptionInHomePage"/>
+            <class name="org.example.TestCase11_VerifySubscriptionInCartPage"/>
+            <class name="org.example.TestCase12_AddProductsInCart"/>
+            <class name="org.example.TestCase13_VerifyProductQuantityInCart"/>
+            <class name="org.example.TestCase14_PlaceOrderRegisterWhileCheckout"/>
+            <class name="org.example.TestCase15_PlaceOrderRegisterBeforeCheckout"/>
+            <class name="org.example.TestCase16_PlaceOrderLoginBeforeCheckout"/>
+            <class name="org.example.TestCase17_RemoveProductsFromCart"/>
+            <class name="org.example.TestCase18_ViewCategoryProducts"/>
+            <class name="org.example.TestCase19_ViewAndCartBrandProducts"/>
+            <class name="org.example.TestCase20_SearchProductsAndVerifyCartAfterLogin"/>
+            <class name="org.example.TestCase21_AddReviewOnProduct"/>
+            <class name="org.example.TestCase22_AddToCartFromRecommendedItems"/>
+            <class name="org.example.TestCase23_VerifyAddressDetailsInCheckoutPage"/>
+            <class name="org.example.TestCase24_DownloadInvoiceAfterPurchaseOrder"/>
+            <class name="org.example.TestCase25_VerifyScrollUpUsingArrowButtonAndScrollDownFunctionality"/>
+            <class name="org.example.TestCase26_VerifyScrollUpWithoutArrowButtonAndScrollDownFunctionality"/>
+        </classes>
+    </test>
+</suite>
