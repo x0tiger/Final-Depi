@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Automation Exercise Test Suite">
+<suite name="Automation Exercise">
     <test name="All Test Cases">
         <classes>
             <class name="org.example.TestCase01_RegisterUser"/>
