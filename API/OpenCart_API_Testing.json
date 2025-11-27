@@ -1,0 +1,1248 @@
+{
+  "info": {
+    "name": "OpenCart API Testing Suite",
+    "description": "Complete API testing collection for OpenCart e-commerce platform",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{api_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/opencart",
+      "type": "string"
+    },
+    {
+      "key": "api_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "customer_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "product_id",
+      "value": "42",
+      "type": "string"
+    },
+    {
+      "key": "order_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "category_id",
+      "value": "20",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login - Get API Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"test\": \"login\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/simple_api.php?route=login",
+              "host": ["{{base_url}}"],
+              "path": ["simple_api.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "login"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Customer API Tests",
+      "item": [
+        {
+          "name": "Get All Customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/simple_api.php?route=customers",
+              "host": ["{{base_url}}"],
+              "path": ["simple_api.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "customers"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Customer by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/simple_api.php?route=product&id={{customer_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["simple_api.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "product"
+                },
+                {
+                  "key": "id",
+                  "value": "{{customer_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create New Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"telephone\": \"+1234567890\",\n  \"password\": \"password123\",\n  \"confirm\": \"password123\",\n  \"customer_group_id\": \"1\",\n  \"status\": \"1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/customer&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/customer"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"customer_id\": \"{{customer_id}}\",\n  \"firstname\": \"John Updated\",\n  \"lastname\": \"Doe Updated\",\n  \"email\": \"john.updated@example.com\",\n  \"telephone\": \"+1234567899\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/customer&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/customer"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Customer Addresses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/customer/address&customer_id={{customer_id}}&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/customer/address"
+                },
+                {
+                  "key": "customer_id",
+                  "value": "{{customer_id}}"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product API Tests",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/simple_api.php?route=products",
+              "host": ["{{base_url}}"],
+              "path": ["simple_api.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "products"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/simple_api.php?route=product&id={{product_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["simple_api.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "product"
+                },
+                {
+                  "key": "id",
+                  "value": "{{product_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Products",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/product/search&search=laptop&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/product/search"
+                },
+                {
+                  "key": "search",
+                  "value": "laptop"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Products by Category",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/product&category_id={{category_id}}&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/product"
+                },
+                {
+                  "key": "category_id",
+                  "value": "{{category_id}}"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"product_description\": {\n    \"1\": {\n      \"name\": \"Test Product API\",\n      \"description\": \"This is a test product created via API\",\n      \"tag\": \"test, api, product\",\n      \"meta_title\": \"Test Product\",\n      \"meta_description\": \"Test product description\",\n      \"meta_keyword\": \"test, product\"\n    }\n  },\n  \"model\": \"TEST-API-001\",\n  \"sku\": \"TEST-SKU-001\",\n  \"price\": \"99.99\",\n  \"quantity\": \"100\",\n  \"minimum\": \"1\",\n  \"subtract\": \"1\",\n  \"stock_status_id\": \"7\",\n  \"shipping\": \"1\",\n  \"weight\": \"1.00\",\n  \"weight_class_id\": \"1\",\n  \"length\": \"10\",\n  \"width\": \"10\",\n  \"height\": \"10\",\n  \"length_class_id\": \"1\",\n  \"status\": \"1\",\n  \"tax_class_id\": \"0\",\n  \"sort_order\": \"1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/product&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/product"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"product_id\": \"{{product_id}}\",\n  \"product_description\": {\n    \"1\": {\n      \"name\": \"Updated Product Name\",\n      \"description\": \"Updated product description\"\n    }\n  },\n  \"price\": \"199.99\",\n  \"quantity\": \"50\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/product&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/product"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Category API Tests",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/simple_api.php?route=categories",
+              "host": ["{{base_url}}"],
+              "path": ["simple_api.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "categories"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/category/info&category_id={{category_id}}&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/category/info"
+                },
+                {
+                  "key": "category_id",
+                  "value": "{{category_id}}"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"category_description\": {\n    \"1\": {\n      \"name\": \"API Test Category\",\n      \"description\": \"Category created via API\",\n      \"meta_title\": \"API Test Category\",\n      \"meta_description\": \"Test category description\",\n      \"meta_keyword\": \"test, category, api\"\n    }\n  },\n  \"parent_id\": \"0\",\n  \"sort_order\": \"1\",\n  \"status\": \"1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/category&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/category"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order API Tests",
+      "item": [
+        {
+          "name": "Get All Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/simple_api.php?route=orders",
+              "host": ["{{base_url}}"],
+              "path": ["simple_api.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "orders"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/order/info&order_id={{order_id}}&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/order/info"
+                },
+                {
+                  "key": "order_id",
+                  "value": "{{order_id}}"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"customer_id\": \"{{customer_id}}\",\n  \"customer_group_id\": \"1\",\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"telephone\": \"+1234567890\",\n  \"payment_firstname\": \"John\",\n  \"payment_lastname\": \"Doe\",\n  \"payment_company\": \"Test Company\",\n  \"payment_address_1\": \"123 Test Street\",\n  \"payment_city\": \"Test City\",\n  \"payment_postcode\": \"12345\",\n  \"payment_country_id\": \"222\",\n  \"payment_zone_id\": \"3513\",\n  \"shipping_firstname\": \"John\",\n  \"shipping_lastname\": \"Doe\",\n  \"shipping_company\": \"Test Company\",\n  \"shipping_address_1\": \"123 Test Street\",\n  \"shipping_city\": \"Test City\",\n  \"shipping_postcode\": \"12345\",\n  \"shipping_country_id\": \"222\",\n  \"shipping_zone_id\": \"3513\",\n  \"products\": [\n    {\n      \"product_id\": \"{{product_id}}\",\n      \"quantity\": \"2\"\n    }\n  ],\n  \"order_status_id\": \"1\",\n  \"comment\": \"Test order created via API\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/order&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/order"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"order_id\": \"{{order_id}}\",\n  \"order_status_id\": \"5\",\n  \"comment\": \"Order status updated via API\",\n  \"notify\": \"1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/order/history&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/order/history"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/order/history&order_id={{order_id}}&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/order/history"
+                },
+                {
+                  "key": "order_id",
+                  "value": "{{order_id}}"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cart API Tests",
+      "item": [
+        {
+          "name": "Add Product to Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"product_id\": \"{{product_id}}\",\n  \"quantity\": \"2\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/cart/add&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/cart/add"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Cart Contents",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/cart&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/cart"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Cart Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"cart_id\": \"1\",\n  \"quantity\": \"5\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/cart/edit&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/cart/edit"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Item from Cart",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/cart/remove&cart_id=1&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/cart/remove"
+                },
+                {
+                  "key": "cart_id",
+                  "value": "1"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Coupon API Tests",
+      "item": [
+        {
+          "name": "Apply Coupon",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"coupon_code\": \"TEST2020\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/coupon&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/coupon"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Available Coupons",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/coupon/list&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/coupon/list"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Review API Tests",
+      "item": [
+        {
+          "name": "Get Product Reviews",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/review&product_id={{product_id}}&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/review"
+                },
+                {
+                  "key": "product_id",
+                  "value": "{{product_id}}"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Product Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"product_id\": \"{{product_id}}\",\n  \"customer_id\": \"{{customer_id}}\",\n  \"name\": \"John Doe\",\n  \"text\": \"Great product! Highly recommended.\",\n  \"rating\": \"5\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/review&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/review"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "System API Tests",
+      "item": [
+        {
+          "name": "Get Store Information",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/store&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/store"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Languages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/language&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/language"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Currencies",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/currency&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/currency"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Countries",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/localisation/country&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/localisation/country"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Zones by Country",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/localisation/zone&country_id=222&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/localisation/zone"
+                },
+                {
+                  "key": "country_id",
+                  "value": "222"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Shipping API Tests",
+      "item": [
+        {
+          "name": "Get Shipping Methods",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"shipping_address\": {\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\",\n    \"address_1\": \"123 Test Street\",\n    \"city\": \"Test City\",\n    \"postcode\": \"12345\",\n    \"country_id\": \"222\",\n    \"zone_id\": \"3513\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/shipping/methods&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/shipping/methods"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payment API Tests",
+      "item": [
+        {
+          "name": "Get Payment Methods",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_token}}"
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "raw": "{\n  \"payment_address\": {\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\",\n    \"address_1\": \"123 Test Street\",\n    \"city\": \"Test City\",\n    \"postcode\": \"12345\",\n    \"country_id\": \"222\",\n    \"zone_id\": \"3513\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/index.php?route=api/payment/methods&api_token={{api_token}}",
+              "host": ["{{base_url}}"],
+              "path": ["index.php"],
+              "query": [
+                {
+                  "key": "route",
+                  "value": "api/payment/methods"
+                },
+                {
+                  "key": "api_token",
+                  "value": "{{api_token}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": [
+          "// Set dynamic variables",
+          "pm.globals.set(\"timestamp\", Math.round(new Date().getTime() / 1000));",
+          "",
+          "// Check if API token exists",
+          "if (!pm.globals.get(\"api_token\")) {",
+          "    console.log(\"API Token not found. Please run the Login request first.\");",
+          "}"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "// Common test scripts",
+          "pm.test(\"Status code is 200\", function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "pm.test(\"Response time is less than 5000ms\", function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+          "});",
+          "",
+          "pm.test(\"Response has JSON body\", function () {",
+          "    pm.response.to.be.json;",
+          "});",
+          "",
+          "// Extract API token from login response",
+          "if (pm.request.url.toString().includes('api/login')) {",
+          "    var jsonData = pm.response.json();",
+          "    if (jsonData.api_token) {",
+          "        pm.globals.set(\"api_token\", jsonData.api_token);",
+          "        console.log(\"API Token saved: \" + jsonData.api_token);",
+          "    }",
+          "}",
+          "",
+          "// Extract IDs from responses for chaining",
+          "try {",
+          "    var responseJson = pm.response.json();",
+          "    ",
+          "    if (responseJson.customer_id) {",
+          "        pm.globals.set(\"customer_id\", responseJson.customer_id);",
+          "    }",
+          "    ",
+          "    if (responseJson.product_id) {",
+          "        pm.globals.set(\"product_id\", responseJson.product_id);",
+          "    }",
+          "    ",
+          "    if (responseJson.order_id) {",
+          "        pm.globals.set(\"order_id\", responseJson.order_id);",
+          "    }",
+          "    ",
+          "    if (responseJson.category_id) {",
+          "        pm.globals.set(\"category_id\", responseJson.category_id);",
+          "    }",
+          "} catch (e) {",
+          "    // Response is not JSON or doesn't contain expected data",
+          "}"
+        ]
+      }
+    }
+  ]
+}
